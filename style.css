@@ -1,0 +1,9 @@
+table {
+    border: solid 1px;
+}
+thead {
+    font-style: italic;
+}
+tr, td {
+    padding: 5px;
+}

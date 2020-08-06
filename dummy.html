@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <script src="dummy.js"></script>
+</head>
+<body align="center">
+    <form action="index.html" method="get" id="myForm">
+        <label for="fname">First Name: </label>
+        <input type="text" name="fname" id="fname" onkeyup="firstaNameValidation()"><br><br>
+        <label for="lname">Last Name: </label>
+        <input type="text" name="lname" id="lname"><br><br>
+        <label for="cls">Class: </label>
+        <input type="text" name="cls" id="cls"><br><br>
+        <label for="yop">Year of Passing: </label>
+        <input type="date" name="yop" id="yop"><br><br>
+        <label for="p">Percentage: </label>
+        <input type="number" name="p" id="p"><br><br>
+        <input type="submit" value="Submit" id="buttonSubmit" onclick="validate()">
+    </form>
+</body>
+</html>

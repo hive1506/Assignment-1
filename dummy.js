@@ -1,34 +1,58 @@
-function tabulate(data, columns) {
-    var table = d3.select('body').append('table')
-    var thead = table.append('thead')
-    var	tbody = table.append('tbody');
-
-    // append the header row
-    thead.append('tr')
-      .selectAll('th')
-      .data(columns).enter()
-      .append('th')
-        .text(function (column) { return column; });
-
-    // create a row for each object in the data
-    var rows = tbody.selectAll('tr')
-      .data(data)
-      .enter()
-      .append('tr');
-
-    // create a cell in each row for each column
-    var cells = rows.selectAll('td')
-      .data(function (row) {
-        return columns.map(function (column) {
-          return {column: column, value: row[column]};
-        });
-      })
-      .enter()
-      .append('td')
-        .text(function (d) { return d.value; });
-
-  return table;
+function firstaNameValidation()
+{
+  var fname = document.getElementById("fname").value;
+  if (!fname.match(/^\D+$/) ) {
+    alert("Invalid First Name");
+    document.getElementById("buttonSubmit").disabled = true; 
+  }
+  else {
+    document.getElementById("buttonSubmit").disabled = false;
+  }
 }
 
-// render the table(s)
-tabulate(data, ['date', 'close']); // 2 column table
+function validate() {
+  var fn = document.forms["myForm"]["fname"].value;
+  var ln = document.forms["myForm"]["lname"].value;
+  var cls = document.forms["myForm"]["cls"].value;
+  var d = document.forms["myForm"]["yop"].value;
+  var allowBlank = true;
+  var maxY = 2017;
+  var err = "";
+
+  if (!fn.match(/^\D+$/) || !ln.match(/^\D+$/)) {
+    alert("Invalid Name");
+  }
+  if (!cls.match(/^[a-z0-9]+$/i)) {
+    alert("Invalid Class");
+  }
+  if (d != ''){
+    if (regs = d.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/)) {
+      if (regs[1] < 1 || regs[1] > 31) {
+        err = "invalid day " + regs[1];
+      }
+      else if (regs[2] < 1 || regs[2] > 12) {
+        err = " invalid month " + regs[2];
+      }
+      else if (regs[3] < maxY) {
+        err = " invalid year " + regs[2] + " . Year must be greater than 2017";
+      }
+      else {
+        err = "Invalid date format " + d;
+      }
+    }
+    else{
+      err = "Invalid date format " + d;
+    }    
+
+    if (err != "") {
+      alert(err);
+      d.focus();
+      return false;
+    }
+    return true;
+  }
+  else if (!allowBlank) {
+    err = "Empty date not allowed";
+  }
+  
+}

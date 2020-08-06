@@ -40,9 +40,11 @@ data.sort(function (x,y) {
     }
     return 0;
 });
-d3.select('body').append('p').text((d) => data[0].name);
 function createTable(data, columns) {
-    var table = d3.select('body').append('table');
+    var table = d3.select('body').append('table')
+                .append('tr')
+                .text('Student Results Board')
+                .style("font-weight","bold");
     var thead = table.append('thead');
     var tbody = table.append('tbody');
 
@@ -56,14 +58,15 @@ function createTable(data, columns) {
         .text((c) => c);
     
     var totalSum = [];
+	var topper =[];
     data.forEach(function (val){
         val.totalMarks = parseInt(val.marks.Maths) + parseInt(val.marks.English) + parseInt(val.marks.Science);
+		topper.push(val.totalMarks);
     });
     var cols = d3.keys(data[0]);
     var temp = cols[1];
     cols[1] = cols[2];
-    cols[2] = temp; 
-    var topper =[];
+    cols[2] = temp;     
     var totalMarks = 0;
     var flag = -1;
     temp = 0;
@@ -74,6 +77,17 @@ function createTable(data, columns) {
                     .data(data)
                     .enter()
                     .append('tr')
+					.style("color",function (d, i) {
+						//alert(d);
+						var minMarks = d3.values(d.marks);
+                                minMarks = d3.min(minMarks, (d1) => d1);
+                                if (minMarks < 20) {
+									return "red";
+                                }
+                        if (d.totalMarks == d3.max(topper)) {
+                            return "green";
+                        }                    
+                    })
                     .selectAll('td')  // create a cell in each row for each column
                     .data(function (d) {
                         return cols.map(function (k) {
@@ -123,18 +137,18 @@ function createTable(data, columns) {
                             return d;
                         }
                      })
-                    .style("color",function (d, i) {
-                        if (d == "Fail" || d == "Pass") {
-                            row += 1;
-                        if ( temp2[row][0] == 1) {
-                            return "red";
-                        }
-                        if (temp2[row][0] == 0 && flag == 1) {
-                            return "green";
-                        }
-                    }
-                    });
-                    document.writeln(temp2);
+                    // .style("color",function (d, i) {
+                        // if (d == "Fail" || d == "Pass") {
+                            // row += 1;
+                        // if ( temp2[row][0] == 1) {
+                            // return "red";
+                        // }
+                        // if (temp2[row][0] == 0 && flag == 1) {
+                            // return "green";
+                        // }
+                    // }
+                    // })
+					;
     return table;
 }
 
