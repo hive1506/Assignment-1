@@ -9,15 +9,15 @@
 <body align="center">
     <form action="index.html" method="get" id="myForm">
         <label for="fname">First Name: </label>
-        <input type="text" name="fname" id="fname" onkeyup="firstaNameValidation()"><br><br>
+        <input type="text" name="fname" id="fname" onkeyup="firstNameValidation()"><br><br>
         <label for="lname">Last Name: </label>
-        <input type="text" name="lname" id="lname"><br><br>
+        <input type="text" name="lname" id="lname" onkeyup="lastNameValidation()"><br><br>
         <label for="cls">Class: </label>
-        <input type="text" name="cls" id="cls"><br><br>
+        <input type="text" name="cls" id="cls" onkeyup="classValidation()"><br><br>
         <label for="yop">Year of Passing: </label>
         <input type="date" name="yop" id="yop"><br><br>
         <label for="p">Percentage: </label>
-        <input type="number" name="p" id="p"><br><br>
+        <input type="number" name="p" id="p" onkeyup="percentageValidation()"><br><br>
         <input type="submit" value="Submit" id="buttonSubmit" onclick="validate()">
     </form>
 </body>
