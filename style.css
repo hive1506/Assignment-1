@@ -7,3 +7,11 @@ thead {
 tr, td {
     padding: 5px;
 }
+a {
+    color : #000000;
+    text-decoration: none;
+    padding: 10px;
+    background-color: #ffcccf;
+    border-radius: 4px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
